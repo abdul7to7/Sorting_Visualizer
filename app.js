@@ -113,6 +113,8 @@ function perms(e) {
         randomise();
     }
     else if (e.target.classList.contains("runn")) {
+        arre = createArray();
+    renderBars(arre);
         if (dropBox.options.selectedIndex == 0) {
             taskBubble();
         }
