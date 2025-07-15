@@ -1,4 +1,5 @@
 
+
 const barsDiv = document.querySelector(".barsDiv");
 const butt = document.querySelectorAll(".press");
 const buttonsDiv = document.querySelector(".buttons");
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 let randing = [];
-
+let newTask=false;
 function createArray() {
     let array = [];
     for (let i = 0; i < 25; i++) {
@@ -53,7 +54,7 @@ function sleep(ms) {
 }
 
 async function taskBubble() {
-    for (let j=0; j<25; j++) {
+    for (let j=0; j<25; j++) { 
         let count = 0;
         for (let i = 0; i < 24-j;i++) {
             barsDiv.children[i].style.backgroundColor = "rgb(35, 240, 52)";
@@ -71,6 +72,7 @@ async function taskBubble() {
 
             }
             await sleep(100);
+            if(newTask) return
             barsDiv.children[i].style.backgroundColor = "rgb(221, 194, 178)";
             barsDiv.children[i+1].style.backgroundColor = "rgb(221, 194, 178)"
         }
@@ -93,6 +95,7 @@ async function taskSelection() {
                 ind = j;
             }
             await sleep(100);
+            if(newTask) return;
             barsDiv.children[j].style.backgroundColor = "rgb(221, 194, 178)";
             
         }
@@ -108,7 +111,10 @@ async function taskSelection() {
     }
 }
 
-function perms(e) {
+async function perms(e) {
+    newTask=true
+    await sleep(200)
+    newTask=false
     if (e.target.classList.contains("randomIt")) {
         randomise();
     }
